@@ -16,19 +16,14 @@ unique_values_df=pd.DataFrame({'Column name':cat_cols,'No of Unique Values':[dat
 ```
 ### Distribution of categorical variables
 ```
-fig,axes=plt.subplots(4,4,figsize=(20,16))
-fig.suptitle('Distribution of Categorical Variables')
-axes=axes.flatten()
-for i,col in enumerate(unique_values_df['Column name']):
-    sns.countplot(x=data[col],ax=axes[i],palette='coolwarm')
-    axes[i].set_title(col,fontsize=4)
-    axes[i].set_xlabel("Categorical Variable")
-    axes[i].set_ylabel("Count")
-    axes[i].tick_params(axis='x',rotation=45)
-for j in range(i+1,len(axes)):
-    fig.delaxes(axes[j])
-plt.tight_layout(rect=[0,0,1,0.95])
-plt.show()    
+categorical_variables=['HomePlanet','CryoSleep','Destination','VIP']
+fig=plt.figure(figsize=(10,16))
+for i, var_name in enumerate(categorical_variables):
+    ax=fig.add_subplot(4,1,i+1)
+    sns.countplot(data=train, x=var_name, axes=ax, hue='Transported')
+    ax.set_title(var_name)
+fig.tight_layout()  # Improves appearance a bit
+plt.show()      
 ```
 ### Shapiro Normality Results
 #### Applicable only for Numeric columns
@@ -41,3 +36,24 @@ for col in numerical_cols:
     else:
         print(f"{col} has not passed normality test")
 ```        
+### Piechart for target distribution
+```
+train['Transported'].value_counts().plot.pie(explode=[0.1,0.1],autopct='%1.1f%%',shadow=True,textprops={'fontsize':16}).set_title('Target Distribution')
+```
+
+### Distribution of Numerical Variables
+```
+for i, var_name in enumerate(exp_feats):
+    # Left plot
+    ax=fig.add_subplot(5,2,2*i+1)
+    sns.histplot(data=train, x=var_name, axes=ax, bins=30, kde=False, hue='Transported')
+    ax.set_title(var_name)
+    
+    # Right plot (truncated)
+    ax=fig.add_subplot(5,2,2*i+2)
+    sns.histplot(data=train, x=var_name, axes=ax, bins=30, kde=True, hue='Transported')
+    plt.ylim([0,100])
+    ax.set_title(var_name)
+fig.tight_layout()  # Improves appearance a bit
+plt.show()
+```
