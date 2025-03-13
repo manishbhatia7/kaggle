@@ -57,3 +57,8 @@ for i, var_name in enumerate(exp_feats):
 fig.tight_layout()  # Improves appearance a bit
 plt.show()
 ```
+### Creating the age group buckets
+```
+train.loc[train['Age']<=12,'Age_Group']='Age_0-12'
+train.loc[train['Age']>12,'Age_Group']='Age_13-17'
+```
