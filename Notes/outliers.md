@@ -1,2 +1,0 @@
-TEST THE VISION
-Test
