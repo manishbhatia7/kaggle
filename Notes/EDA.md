@@ -62,3 +62,11 @@ plt.show()
 train.loc[train['Age']<=12,'Age_Group']='Age_0-12'
 train.loc[train['Age']>12,'Age_Group']='Age_13-17'
 ```
+
+### Depicting Missing Values
+```
+na_cols=data.columns[data.isnull().any()].tolist()
+mv=pd.DataFrame(data[na_cols].isna().sum(),columns=['Missing Column'])
+mv['Percentage Missing']=np.round(100*mv['Missing Column']/len(data),2)
+
+```
