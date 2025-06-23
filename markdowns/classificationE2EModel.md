@@ -10,4 +10,9 @@
 * Creating a csv file
 
 # Importing Libraries
->Import All Libraries which are required for coding.
+#### Import All Libraries which are required for coding.
+
+# Basic Understanding of Data
+`` df.head()``<br>
+`` df.info()``<br>
+`` ``
