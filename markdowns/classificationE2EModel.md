@@ -47,4 +47,11 @@ a)One Hot Encoding for nominal<br>
 b)Labelencoding for categorical<br>
 * Select features and labels for model training
 * Do feature scaling
+* Splitting data both for scaled and non scaled
 
+# Model Building 
+* Perform accuracy score of multiple models
+* Do hyperparameter tuning for Selected Models
+* Stack the models with best hyperparameters
+
+# Predict the test file with stacked model 
